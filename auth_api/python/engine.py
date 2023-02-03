@@ -1,9 +1,13 @@
-from sqlmodel import SQLModel, create_engine, Session, select
+from sqlmodel import SQLModel, create_engine, Session, select, Field
 from typing import Optional
-from sqlmodel import Field
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+SQL_URL = os.environ.get("SQL_URL")
 
 # connect to a sql database in amazon aws
-engine = create_engine()
+engine = create_engine(SQL_URL, echo=True)
 
 
 # create a class to represent a table in the database (users)
