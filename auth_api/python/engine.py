@@ -24,5 +24,3 @@ def get_user_by_username(username: str) -> Users:
         user = session.exec(statement).first()
         return user
 
-
-print(get_user_by_username("admin"))
