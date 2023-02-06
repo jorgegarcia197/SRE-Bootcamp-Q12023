@@ -23,4 +23,3 @@ def get_user_by_username(username: str) -> Users:
         statement = select(Users).where(Users.username == username)
         user = session.exec(statement).first()
         return user
-

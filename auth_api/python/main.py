@@ -1,6 +1,6 @@
-from fastapi import FastAPI, Form, Header, Depends, HTTPException, status
+from fastapi import FastAPI, Form, Depends
 from methods import Token, Restricted
-
+from jwt_bearer import JWTBearer
 
 app = FastAPI()
 
@@ -8,23 +8,23 @@ login = Token()
 protected = Restricted()
 
 
-@app.get("/")
+@app.get("/", tags=["root"])
 def url_root():
     return "OK"
 
 
-@app.get("/_health")
+@app.get("/_health", tags=["health"])
 def url_health():
     return "OK"
 
 
-@app.post("/login")
+@app.post("/login", tags=["login"])
 def url_login(username: str = Form(), password: str = Form()):
     res = {"data": login.generate_token(username, password)}
     return res
 
 
-@app.get("/protected")
-def url_protected(authorization: str = Header(...)):
-    res = {"data": protected.access_data()}
+@app.get("/protected", dependencies=[Depends(JWTBearer())], tags=["protected"])
+def url_protected(authorization: str = Depends(JWTBearer())):
+    res = {"data": protected.access_data(authorization)}
     return res
