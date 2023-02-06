@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python 3.10
+      - name: Set up Python 3.8
         uses: actions/setup-python@v3
         with:
           python-version: "3.8"
@@ -35,8 +35,8 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Test with pytest
         env:
-          SQL_URL: ${{ secrets.SQL_URL }},
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          SQL_URL: ${{ vars.SQL_URL }},
+          SECRET_KEY: ${{ vars.SECRET_KEY }}
 
         run: |
           pytest auth_api/python/tests.py
