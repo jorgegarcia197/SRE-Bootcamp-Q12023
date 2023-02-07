@@ -39,4 +39,4 @@ jobs:
           SECRET_KEY: ${{ vars.SECRET_KEY }}
 
         run: |
-          pytest auth_api/python/tests.py
+          pytest auth_api/python/tests/tests.py
