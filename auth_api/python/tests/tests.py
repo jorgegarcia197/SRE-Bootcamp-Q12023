@@ -1,6 +1,6 @@
 import unittest
-from methods import Token, Restricted
-from jwt_bearer import verify_jwt, create_jwt_token, decode_jwt
+from src.methods import Token, Restricted
+from src.jwt_bearer import verify_jwt, create_jwt_token, decode_jwt
 
 
 class TestStringMethods(unittest.TestCase):
@@ -27,12 +27,10 @@ class TestStringMethods(unittest.TestCase):
         ),
 
     def test_generate_token_no_admin(self):
-
         decoded = decode_jwt(self.generated_token_no_admin)
         self.assertEqual("noadmin", decoded.get("username", None))
 
     def test_generate_token_bob(self):
-
         decoded = decode_jwt(self.generated_token_bob)
         self.assertEqual("bob", decoded.get("username", None))
 

@@ -1,6 +1,6 @@
 # These functions need to be implemented
-from engine import get_user_by_username
-from jwt_bearer import create_jwt_token, decode_jwt
+from src.engine import get_user_by_username
+from src.jwt_bearer import create_jwt_token, decode_jwt
 import hashlib
 
 class Token:

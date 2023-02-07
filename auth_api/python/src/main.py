@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Form, Depends
-from methods import Token, Restricted
-from jwt_bearer import JWTBearer
+from src.methods import Token, Restricted
+from src.jwt_bearer import JWTBearer
 
 app = FastAPI()
 
